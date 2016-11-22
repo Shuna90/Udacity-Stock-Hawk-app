@@ -26,22 +26,16 @@ public class QuoteColumns {
     @NotNull
     public static final String PERCENT_CHANGE = "percent_change";
     @DataType(DataType.Type.TEXT)
-    @NotNull
     public static final String DAY_LOW = "day_low";
     @DataType(DataType.Type.TEXT)
-    @NotNull
     public static final String DAY_High = "day_High";
     @DataType(DataType.Type.TEXT)
-    @NotNull
     public static final String YEAR_LOW = "year_low";
     @DataType(DataType.Type.TEXT)
-    @NotNull
     public static final String YEAR_HIGH = "year_high";
     @DataType(DataType.Type.TEXT)
-    @NotNull
     public static final String OPEN_PRICE = "open_price";
     @DataType(DataType.Type.TEXT)
-    @NotNull
     public static final String PREVIOUS_PRICE = "previous_price";
 
     @DataType(DataType.Type.TEXT)

@@ -14,8 +14,14 @@ public class StockDetailActivity extends Activity {
         setContentView(R.layout.activity_stock_detail);
 
         if (savedInstanceState == null){
+            Bundle arguments = new Bundle();
+            arguments.putString(StockDetailActivityFragment.STOCK_DETAIL,
+                    getIntent().getExtras().getString(StockDetailActivityFragment.STOCK_DETAIL));
+
+            StockDetailActivityFragment fragment = new StockDetailActivityFragment();
+            fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
-                    .replace(R.id.stock_detail_container, new StockDetailActivityFragment())
+                    .replace(R.id.stock_detail_container, fragment)
                     .commit();
         }
     }

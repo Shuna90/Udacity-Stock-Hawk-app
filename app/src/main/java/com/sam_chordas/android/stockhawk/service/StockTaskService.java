@@ -53,6 +53,7 @@ public class StockTaskService extends GcmTaskService {
     private Context mContext;
     private StringBuilder mStoredSymbols = new StringBuilder();
     private boolean isUpdate;
+    private boolean oneCount;
 
     public StockTaskService() {
     }
@@ -63,7 +64,6 @@ public class StockTaskService extends GcmTaskService {
 
     @Override
     public int onRunTask(TaskParams params) {
-        Cursor initQueryCursor;
         if (mContext == null) {
             mContext = this;
         }
@@ -77,22 +77,23 @@ public class StockTaskService extends GcmTaskService {
 
         StockServices service = retrofit.create(StockServices.class);
         String query = URL_QUERY_QUOTES + urlBuilder(params) + ")";
-        Log.d(LOG_TAG, query);
+        //Log.d(LOG_TAG, query);
 
         int code = 200;
         try {
-            if (params.getTag().equals(StockIntentService.ACTION_INIT)) {
-                Call<StocksQuery> call = service.getStocks(query);
-                Response<StocksQuery> response = call.execute();
-                code = response.code();
-                StocksQuery responseGetStocks = response.body();
-                saveDatabase(responseGetStocks.getStockQuotes());
-            } else {
+            //just add one stock or update one stock
+            if (oneCount) {
                 Call<StockQuery> call = service.getStock(query);
                 Response<StockQuery> response = call.execute();
                 code = response.code();
                 StockQuery responseGetStock = response.body();
                 saveDatabase(responseGetStock.getStockQuotes());
+            } else {
+                Call<StocksQuery> call = service.getStocks(query);
+                Response<StocksQuery> response = call.execute();
+                code = response.code();
+                StocksQuery responseGetStocks = response.body();
+                saveDatabase(responseGetStocks.getStockQuotes());
             }
         } catch (NullPointerException e) {
             catchErrorCode(code);
@@ -114,14 +115,18 @@ public class StockTaskService extends GcmTaskService {
             toast = Toast.makeText(mContext, "Server Error " + code, Toast.LENGTH_SHORT);
             Log.d(LOG_TAG, "500");
         }
-        toast.show();
+        if (toast != null){
+            toast.show();
+        }
     }
 
     private String urlBuilder(TaskParams params){
         ContentResolver resolver = mContext.getContentResolver();
+        oneCount = false;
         if (params.getTag().equals(StockIntentService.ACTION_INIT) || params.getTag().equals(PERIOD_TAG)) {
             isUpdate = true;
-            Cursor cursor = resolver.query(QuoteProvider.Quotes.CONTENT_URI,
+            Cursor cursor = resolver.query(
+                    QuoteProvider.Quotes.CONTENT_URI,
                     new String[]{"Distinct " + QuoteColumns.SYMBOL},
                     null,
                     null,
@@ -134,6 +139,9 @@ public class StockTaskService extends GcmTaskService {
             } else {
                 DatabaseUtils.dumpCursor(cursor);
                 cursor.moveToFirst();
+                if (cursor.getCount() == 1){
+                    oneCount = true;
+                }
                 for (int i = 0; i < cursor.getCount(); i++) {
                     mStoredSymbols.append("\"");
                     mStoredSymbols.append(cursor.getString(
@@ -145,6 +153,7 @@ public class StockTaskService extends GcmTaskService {
                 return mStoredSymbols.toString();
             }
         } else if (params.getTag().equals(StockIntentService.ACTION_ADD)) {
+            oneCount = true;
             isUpdate = false;
             // Get symbol from params.getExtra and build query
             String stockInput = params.getExtras().getString(StockIntentService.SERVICE_SYMBOL).toUpperCase();

@@ -18,6 +18,9 @@ import com.sam_chordas.android.stockhawk.data.QuoteProvider;
 import com.sam_chordas.android.stockhawk.touch_helper.ItemTouchHelperAdapter;
 import com.sam_chordas.android.stockhawk.touch_helper.ItemTouchHelperViewHolder;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by sam_chordas on 10/6/15.
  * Credit to skyfishjy gist:
@@ -77,11 +80,16 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
 
     @Override
     public void onItemDismiss(int position) {
+        String symbol = getSymbol(position);
+        mContext.getContentResolver().delete(QuoteProvider.Quotes.withSymbol(symbol), null, null);
+        mContext.getContentResolver().delete(QuoteProvider.H_QUOTES.withSymbol(symbol), null, null);
+        notifyItemRemoved(position);
+    }
+
+    public String getSymbol(int position){
         Cursor c = getCursor();
         c.moveToPosition(position);
-        String symbol = c.getString(c.getColumnIndex(QuoteColumns.SYMBOL));
-        mContext.getContentResolver().delete(QuoteProvider.Quotes.withSymbol(symbol), null, null);
-        notifyItemRemoved(position);
+        return c.getString(c.getColumnIndex(QuoteColumns.SYMBOL));
     }
 
     @Override
@@ -91,16 +99,17 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
 
     public static class ViewHolder extends RecyclerView.ViewHolder
             implements ItemTouchHelperViewHolder, View.OnClickListener {
-        public final TextView symbol;
-        public final TextView bidPrice;
-        public final TextView change;
+        @BindView(R.id.stock_symbol)
+        public TextView symbol;
+        @BindView(R.id.bid_price)
+        public TextView bidPrice;
+        @BindView(R.id.change)
+        public TextView change;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            symbol = (TextView) itemView.findViewById(R.id.stock_symbol);
+            ButterKnife.bind(this, itemView);
             symbol.setTypeface(robotoLight);
-            bidPrice = (TextView) itemView.findViewById(R.id.bid_price);
-            change = (TextView) itemView.findViewById(R.id.change);
         }
 
         @Override

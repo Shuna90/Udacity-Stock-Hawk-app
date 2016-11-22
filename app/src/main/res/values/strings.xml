@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="http://schemas.android.com/tools">
     <string name="app_name">Stock Hawk</string>
 
     <string name="action_example">Example action</string>
@@ -22,4 +22,17 @@
     <string name="key_statistics_High">High</string>
     <string name="key_statistics_52wkLow">52wk Low</string>
     <string name="key_statistics_52wkHigh">52wk High</string>
+    <string name="key_statistics_volume">Volume</string>
+    <string name="key_statistics_Average_volume">Avg Vol</string>
+    <string name="key_statistics_volume_stock"><xliff:g id="volume">%2$s</xliff:g>M</string>
+    <string name="key_statistics_Average_volume_stock"><xliff:g id="volume">%2$s</xliff:g>M</string>
+
+    <string name="info_today_close">Today\'s Close :</string>
+    <string name="info_change"><xliff:g id="change">%1$s</xliff:g> ( <xliff:g id="change_percent">%2$s</xliff:g> )</string>
+    <string name="info_title"><xliff:g id="name">%1$s</xliff:g> ( <xliff:g id="symbol">%2$s</xliff:g> )</string>
+    <string name="info_delayed_quote">Delayed Quote NasdaqGS (USD)</string>
+
+    <string name="tab1_14d">14 Days</string>
+    <string name="tab2_1m">1 Month</string>
+    <string name="tab3_2m">2M</string>
 </resources>

@@ -6,8 +6,10 @@
     <color name="material_green_700">#00C853</color>
 
     <color name="white">#FFFFFF</color>
-    <color name="grey">#cccccc</color>
-    <color name="grey_700">#646464</color>
-    <color name="grey_900">#444444</color>
+    <color name="grey_light">#dddddd</color>
+    <color name="grey">#bbbbbb</color>
+    <color name="gray_900">#999999</color>
+    <color name="grey_700">#777777</color>
+    <color name="grey_300">#444444</color>
     <color name="black">#000000</color>
 </resources>
