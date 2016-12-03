@@ -301,8 +301,8 @@ public class StockDetailActivityFragment extends Fragment implements LoaderManag
 
         chart.setData(lineData);
         chart.animateX(1);
-        //chart.setBackgroundColor(Color.TRANSPARENT);
-        chart.setBackgroundColor(Color.BLACK);
+        chart.setBackgroundColor(Color.TRANSPARENT);
+        //chart.setBackgroundColor(Color.GRAY);
         chart.setDrawGridBackground(false);
         Log.d(LOG_TAG, "chart " + mSelectedTab);
     }

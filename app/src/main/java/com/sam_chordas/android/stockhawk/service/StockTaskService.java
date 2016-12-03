@@ -4,6 +4,7 @@ import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -46,6 +47,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class StockTaskService extends GcmTaskService {
     private String LOG_TAG = StockTaskService.class.getSimpleName();
+    public static final String ACTION_DATA_UPDATED =
+            "com.sam_chordas.android.stockhawk.ACTION_DATA_UPDATED";
     public static final String PERIOD_TAG = "periodic";
     private static final String INIT_SYMBOL = "\"YHOO\",\"AAPL\",\"GOOG\",\"MSFT\"";
     private static final String URL_QUERY_QUOTES = "select * from yahoo.finance.quotes where symbol in (";
@@ -182,7 +185,7 @@ public class StockTaskService extends GcmTaskService {
         }
 
         resolver.applyBatch(QuoteProvider.AUTHORITY, batchOperations);
-
+        updateWidgets();
         for (Quote quote : quotes) {
             loadHistoricalData(quote);
         }
@@ -241,6 +244,15 @@ public class StockTaskService extends GcmTaskService {
         }
 
         resolver.applyBatch(QuoteProvider.AUTHORITY, batchOperations);
+        //updateWidgets();
+        //notifyStock();
+    }
+
+    private void updateWidgets() {
+        Context context = mContext;
+        // Setting the package ensures that only components in our app will receive the broadcast
+        Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED).setPackage(context.getPackageName());
+        context.sendBroadcast(dataUpdatedIntent);
     }
 
 }

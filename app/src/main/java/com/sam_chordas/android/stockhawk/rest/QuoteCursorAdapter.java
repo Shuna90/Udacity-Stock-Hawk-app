@@ -17,6 +17,7 @@ import com.sam_chordas.android.stockhawk.data.QuoteColumns;
 import com.sam_chordas.android.stockhawk.data.QuoteProvider;
 import com.sam_chordas.android.stockhawk.touch_helper.ItemTouchHelperAdapter;
 import com.sam_chordas.android.stockhawk.touch_helper.ItemTouchHelperViewHolder;
+import com.sam_chordas.android.stockhawk.ui.MyStocksActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,11 +33,12 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
 
     private static Context mContext;
     private static Typeface robotoLight;
-    private boolean isPercent;
+    private int mChange;
 
-    public QuoteCursorAdapter(Context context, Cursor cursor) {
+    public QuoteCursorAdapter(Context context, Cursor cursor, int mChange) {
         super(context, cursor);
         mContext = context;
+        this.mChange = mChange;
     }
 
     @Override
@@ -71,7 +73,7 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
                         mContext.getResources().getDrawable(R.drawable.percent_change_pill_red));
             }
         }
-        if (Utils.showPercent) {
+        if (mChange == MyStocksActivity.CHANGE_PERCENTAGES) {
             viewHolder.change.setText(cursor.getString(cursor.getColumnIndex("percent_change")));
         } else {
             viewHolder.change.setText(cursor.getString(cursor.getColumnIndex("change")));
@@ -84,6 +86,10 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
         mContext.getContentResolver().delete(QuoteProvider.Quotes.withSymbol(symbol), null, null);
         mContext.getContentResolver().delete(QuoteProvider.H_QUOTES.withSymbol(symbol), null, null);
         notifyItemRemoved(position);
+    }
+
+    public void setChangeUnits(int changeUnits) {
+        mChange = changeUnits;
     }
 
     public String getSymbol(int position){

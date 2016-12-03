@@ -17,28 +17,22 @@
     <TextView
         android:id="@+id/stock_symbol"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/black"
+        android:textColor="@color/grey_300"
         app:layout_gravity="left"
         tools:text="FB" />
 
     <TextView
         android:id="@+id/stock_bid_price"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/black"
+        android:textColor="@color/grey_300"
         app:layout_gravity="left"
         tools:text="131.31" />
 
     <TextView
         android:id="@+id/info_change"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/black"
+        android:textColor="@color/grey_300"
         tools:text="+1 ( +1% )"
-        />
-
-    <TextView
-        android:text="@string/info_delayed_quote"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        android:textColor="@color/grey_700"
         />
 
 

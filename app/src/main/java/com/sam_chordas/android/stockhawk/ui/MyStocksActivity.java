@@ -32,7 +32,6 @@ import com.sam_chordas.android.stockhawk.data.QuoteColumns;
 import com.sam_chordas.android.stockhawk.data.QuoteProvider;
 import com.sam_chordas.android.stockhawk.rest.QuoteCursorAdapter;
 import com.sam_chordas.android.stockhawk.rest.RecyclerViewItemClickListener;
-import com.sam_chordas.android.stockhawk.rest.Utils;
 import com.sam_chordas.android.stockhawk.service.StockIntentService;
 import com.sam_chordas.android.stockhawk.service.StockTaskService;
 import com.sam_chordas.android.stockhawk.touch_helper.SimpleItemTouchHelperCallback;
@@ -53,11 +52,15 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
      */
     private static final String LOG_TAG = MyStocksActivity.class.getName();
     private static final String DETAILFRAGMENT_TAG = "DFTAG";
+    private final String CHANGE = "CHENGE_UNIT";
+    public static final int CHANGE_DOLLARS = 0;
+    public static final int CHANGE_PERCENTAGES = 1;
     private CharSequence mTitle;
     private ItemTouchHelper mItemTouchHelper;
     private static final int CURSOR_LOADER_ID = 0;
     private QuoteCursorAdapter mCursorAdapter;
     private boolean twoPane;
+    private int mChange = CHANGE_DOLLARS;
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -85,11 +88,13 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
             } else {
                 networkToast();
             }
+        }else{
+            mChange = savedInstanceState.getInt(CHANGE);
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addOnItemTouchListener(new RecyclerViewItemClickListener(this, this));
-        mCursorAdapter = new QuoteCursorAdapter(this, null);
+        mCursorAdapter = new QuoteCursorAdapter(this, null, mChange);
         recyclerView.setAdapter(mCursorAdapter);
         getLoaderManager().initLoader(CURSOR_LOADER_ID, null, this);
 
@@ -122,6 +127,13 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
         getLoaderManager().restartLoader(CURSOR_LOADER_ID, null, this);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(CHANGE, mChange);
+    }
+
+
     public void networkToast() {
         Toast.makeText(this, getString(R.string.network_toast), Toast.LENGTH_SHORT).show();
     }
@@ -151,22 +163,15 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (item.getItemId() == R.id.action_change_units) {
+            if (mChange == CHANGE_DOLLARS) {
+                mChange = CHANGE_PERCENTAGES;
+            } else {
+                mChange = CHANGE_DOLLARS;
+            }
+            mCursorAdapter.setChangeUnits(mChange);
+            mCursorAdapter.notifyDataSetChanged();
         }
-
-        if (id == R.id.action_change_units) {
-            // this is for changing stock changes from percent value to dollar value
-            Utils.showPercent = !Utils.showPercent;
-            this.getContentResolver().notifyChange(QuoteProvider.Quotes.CONTENT_URI, null);
-        }
-
         return super.onOptionsItemSelected(item);
     }
 

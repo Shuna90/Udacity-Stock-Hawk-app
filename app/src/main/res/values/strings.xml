@@ -8,10 +8,14 @@
     <string name="symbol_search">Symbol Search</string>
     <string name="content_test">Search for a Stock Symbol</string>
     <string name="input_hint">FB</string>
-    <string name="input_prefill"></string>
     <string name="network_toast">Uh-oh! This app requires an internet connection</string>
 
+    <string name="stock_info">Stock Information Today</string>
+    <string name="title_widget_today">Stock Today</string>
+    <string name="title_widget_detail">Stock Details</string>
+
     <string name="empty_stock">No stocks now, please add a new one.</string>
+    <string name="empty_stock_list">No Stock Information Available</string>
     <string name="empty_stock_no_connection">No network now. Please connect to the internet. </string>
     <string name="title_activity_stock_detail">StockDetailActivity</string>
 
