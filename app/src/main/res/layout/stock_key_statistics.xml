@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movie_information"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingLeft="@dimen/keyline_1"
+    android:paddingRight="@dimen/keyline_1"
+    android:paddingTop="@dimen/keyline_1_minus_8dp"
+    android:paddingBottom="@dimen/keyline_1_minus_8dp"
+    app:useDefaultMargins="true"
+    app:alignmentMode="alignBounds"
+    app:columnOrderPreserved="false"
+    app:columnCount="4"
+    app:rowCount="7">
+
+    <TextView
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/grey_300"
+        app:layout_columnSpan="4"
+        app:layout_gravity="left"
+        android:text="@string/key_statistics_title"
+        tools:text="@string/key_statistics_title"/>
+
+    <TextView
+        android:text="@string/key_statistics_prev_close"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/grey_700"
+        app:layout_columnWeight="1"
+        />
+
+    <TextView
+        android:id="@+id/key_statistics_prev_close_stock"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"
+        tools:text="42.08"
+        app:layout_columnWeight="1"
+        />
+
+    <TextView
+        android:text="@string/key_statistics_open"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/grey_700"
+        app:layout_columnWeight="1"
+        />
+
+    <TextView
+        android:id="@+id/key_statistics_open_stock"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"
+        tools:text="44.92"
+        app:layout_columnWeight="1"
+        />
+
+    <TextView
+        android:text="@string/key_statistics_Low"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/grey_700"
+        app:layout_columnWeight="1"
+        />
+
+    <TextView
+        android:id="@+id/key_statistics_Low_stock"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"
+        app:layout_columnWeight="1"
+        tools:text="41.81" />
+
+    <TextView
+        android:text="@string/key_statistics_High"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/grey_700"
+        app:layout_columnWeight="1"
+        />
+
+    <TextView
+        android:id="@+id/key_statistics_High_stock"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"
+        app:layout_columnWeight="1"
+        tools:text="42.49" />
+
+    <TextView
+        android:text="@string/key_statistics_52wkLow"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/grey_700"
+        app:layout_columnWeight="1"
+        />
+
+    <TextView
+        android:id="@+id/key_statistics_52wkLow_stock"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"
+        app:layout_columnWeight="1"
+        tools:text="26.15" />
+
+    <TextView
+        android:text="@string/key_statistics_52wkHigh"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/grey_700"
+        app:layout_columnWeight="1"
+        />
+
+    <TextView
+        android:id="@+id/key_statistics_52wkHigh_stock"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"
+        tools:text="44.92"
+        app:layout_columnWeight="1"/>
+
+
+</android.support.v7.widget.GridLayout>

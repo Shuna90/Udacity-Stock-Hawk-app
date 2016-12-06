@@ -8,14 +8,21 @@
 
     <include layout="@layout/stock_info"
         android:elevation="@dimen/card_elevation"
-        android:layout_weight="6"
+        android:layout_weight="3"
         android:layout_height="0dp"
         android:layout_width="match_parent"></include>
+
+    <include layout="@layout/stock_key_statistics"
+        android:elevation="@dimen/card_elevation"
+        android:layout_width="match_parent"
+        android:layout_weight="3"
+        android:layout_height="0dp"
+        ></include>
 
     <TabHost
         android:id="@android:id/tabhost"
         android:layout_width="match_parent"
-        android:layout_weight="9"
+        android:layout_weight="5"
         android:layout_height="0dp"
         >
         <LinearLayout
@@ -42,11 +49,5 @@
             </FrameLayout>
         </LinearLayout>
     </TabHost>
-    <include layout="@layout/stock_key_statistics"
-        android:elevation="@dimen/card_elevation"
-        android:layout_width="match_parent"
-        android:layout_weight="5"
-        android:layout_height="0dp"
-        ></include>
 
 </LinearLayout>

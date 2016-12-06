@@ -75,6 +75,8 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
         if (findViewById(R.id.stock_detail_container) != null) {
             twoPane = true;
+        }else{
+            twoPane = false;
         }
         checkNetwork();
         // The intent service is for executing immediate pulls from the Yahoo API
@@ -206,17 +208,15 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     @Override
     public void onItemClick(View v, int position) {
         if (twoPane) {
-            /*
             Bundle args = new Bundle();
-            args.putParcelable(StockDetailActivityFragment.STOCK_DETAIL, );
+            args.putString(StockDetailActivityFragment.STOCK_DETAIL, mCursorAdapter.getSymbol(position));
 
             StockDetailActivityFragment fragment = new StockDetailActivityFragment();
             fragment.setArguments(args);
 
-            getSupportFragmentManager().beginTransaction()
+            getFragmentManager().beginTransaction()
                     .replace(R.id.stock_detail_container, fragment, DETAILFRAGMENT_TAG)
                     .commit();
-                    */
         } else {
             Intent intent = new Intent(v.getContext(), StockDetailActivity.class);
             intent.putExtra(StockDetailActivityFragment.STOCK_DETAIL, mCursorAdapter.getSymbol(position));

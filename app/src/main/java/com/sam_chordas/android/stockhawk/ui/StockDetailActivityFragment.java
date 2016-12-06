@@ -44,7 +44,7 @@ public class StockDetailActivityFragment extends Fragment implements LoaderManag
     public static final String STOCK_DETAIL = "STOCK_DETAIL";
     private static final String TAB = "TAB";
     private String mSymbol;
-    private String mSelectedTab;
+    private String mSelectedTab = "14 Days";
 
     private static final int CURSOR_LOADER_ID_INFO = 1;
     private static final int CURSOR_LOADER_ID_CHART = 2;
@@ -139,11 +139,12 @@ public class StockDetailActivityFragment extends Fragment implements LoaderManag
 
         if (mSelectedTab.equals(getString(R.string.tab1_14d))) {
             tabHost.setCurrentTab(0);
+            Log.d(LOG_TAG, "setupTabs 14 days ");
         } else {
             tabHost.setCurrentTab(1);
+            Log.d(LOG_TAG, "setupTabs 1 month ");
         }
         tabHost.setOnTabChangedListener(this);
-        Log.d(LOG_TAG, "setupTabs");
     }
 
     @Override
@@ -155,31 +156,27 @@ public class StockDetailActivityFragment extends Fragment implements LoaderManag
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        CursorLoader cursorLoader;
         switch (i){
             case CURSOR_LOADER_ID_INFO:
-                cursorLoader = new CursorLoader(getActivity(),
+                return new CursorLoader(getActivity(),
                         QuoteProvider.Quotes.CONTENT_URI,
                         null,
                         QuoteColumns.SYMBOL + " = \"" + mSymbol + "\" AND " + QuoteColumns.ISCURRENT + " = 1",
                         null,
                         null
                         );
-                break;
             case CURSOR_LOADER_ID_CHART:
                 String sortOrder = QuoteColumns._ID + " ASC";
-                cursorLoader = new CursorLoader(getActivity(),
+                Log.d(LOG_TAG, "onCreateLoader CURSOR_LOADER_ID_CHART");
+                return new CursorLoader(getActivity(),
                         QuoteProvider.H_QUOTES.CONTENT_URI,
                         null,
                         QuoteColumns.SYMBOL + " = \"" + mSymbol + "\"",
                         null,
                         sortOrder);
-                Log.d(LOG_TAG, "onCreateLoader CURSOR_LOADER_ID_CHART");
-                break;
             default:
                 throw new IllegalStateException();
         }
-        return cursorLoader;
     }
 
     @Override
@@ -209,6 +206,7 @@ public class StockDetailActivityFragment extends Fragment implements LoaderManag
                     }
                     break;
                 case CURSOR_LOADER_ID_CHART:
+                    Log.d(LOG_TAG, "onLoadFinished CURSOR_LOADER_ID_CHART");
                     if(cursor != null && cursor.moveToFirst()){
                         chart(cursor);
                     }

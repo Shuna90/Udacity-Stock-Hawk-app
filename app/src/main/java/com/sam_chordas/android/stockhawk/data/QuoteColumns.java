@@ -37,7 +37,6 @@ public class QuoteColumns {
     public static final String OPEN_PRICE = "open_price";
     @DataType(DataType.Type.TEXT)
     public static final String PREVIOUS_PRICE = "previous_price";
-
     @DataType(DataType.Type.TEXT)
     public static final String CREATED = "created";
     @DataType(DataType.Type.INTEGER)
