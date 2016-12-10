@@ -1,24 +1,37 @@
 <resources>
 
-  <!-- Base application theme. -->
-  <style name="AppTheme"
-      parent="Theme.AppCompat">
-      <item name="colorPrimary">@color/material_blue_500</item>
-      <item name="colorPrimaryDark">@color/material_blue_700</item>
-    <!-- Customize your theme here. -->
-  </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/material_blue_500</item>
+        <item name="colorPrimaryDark">@color/material_blue_700</item>
+        <item name="toolbarStyle">@style/Toolbar</item>
+        <!-- Customize your theme here. -->
+    </style>
 
-  <style name="PercentChangeTextStyle">
-    <item name="android:textSize">20sp</item>
-    <item name="android:textColor">#FFF</item>
-    <item name="android:textStyle">bold</item>
-  </style>
-  <style name="BidPriceTextStyle">
-    <item name="android:textSize">20sp</item>
-  </style>
-  <style name="StockSymbolTextStyle">
-    <item name="android:textSize">25sp</item>
-    <item name="android:textAllCaps">true</item>
-  </style>
+    <!-- Settings activity theme. -->
+    <style name="AppTheme.Main" parent="@style/AppTheme"/>
+
+    <style name="AppTheme.Details" parent="@style/AppTheme">
+    </style>
+
+    <!-- main activity toolbar style -->
+    <style name="Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <style name="PercentChangeTextStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BidPriceTextStyle">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="StockSymbolTextStyle">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
 
 </resources>

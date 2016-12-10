@@ -32,4 +32,6 @@
     <dimen name="widget_padding_bottom">5dp</dimen>
 
     <dimen name="list_item_height">60dp</dimen>
+    <dimen name="list_item_padding_left">16dp</dimen>
+    <dimen name="list_item_padding_bottom">16dp</dimen>
 </resources>

@@ -2,6 +2,7 @@
 <resources>
     <color name="material_blue_700">#1976D2</color>
     <color name="material_blue_500">#2196F3</color>
+    <color name="primary_light">#B3E5FC</color> <!-- 100 -->
     <color name="material_red_700">#D50000</color>
     <color name="material_green_700">#00C853</color>
 

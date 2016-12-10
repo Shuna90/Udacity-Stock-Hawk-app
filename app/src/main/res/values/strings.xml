@@ -40,4 +40,6 @@
     <string name="tab1_14d">14 Days</string>
     <string name="tab2_1m">1 Month</string>
     <string name="tab3_2m">2M</string>
+
+    <string name="add_quote">Add a new Stock quote</string>
 </resources>

@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.InputType;
 import android.view.Gravity;
@@ -61,6 +62,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     private QuoteCursorAdapter mCursorAdapter;
     private boolean twoPane;
     private int mChange = CHANGE_DOLLARS;
+    private String mSymbol;
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -71,13 +73,11 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_stocks);
+        mSymbol = getIntent() != null ? getIntent().getStringExtra(StockDetailActivityFragment.STOCK_DETAIL) : null;
         ButterKnife.bind(this);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        if (findViewById(R.id.stock_detail_container) != null) {
-            twoPane = true;
-        }else{
-            twoPane = false;
-        }
         checkNetwork();
         // The intent service is for executing immediate pulls from the Yahoo API
         // GCMTaskService can only schedule tasks, they cannot execute immediately
@@ -92,6 +92,23 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
             }
         }else{
             mChange = savedInstanceState.getInt(CHANGE);
+        }
+
+        if (findViewById(R.id.stock_detail_container) != null) {
+            twoPane = true;
+            if (savedInstanceState == null) {
+                StockDetailActivityFragment fragment = new StockDetailActivityFragment();
+                if (mSymbol != null) {
+                    Bundle args = new Bundle();
+                    args.putString(StockDetailActivityFragment.STOCK_DETAIL, mSymbol);
+                    fragment.setArguments(args);
+                }
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.stock_detail_container, fragment, DETAILFRAGMENT_TAG)
+                        .commit();
+            }
+        }else{
+            twoPane = false;
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -152,7 +169,12 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayShowTitleEnabled(true);
+        if (twoPane){
+            actionBar.setDisplayShowTitleEnabled(false);
+        }else{
+            actionBar.setDisplayShowTitleEnabled(true);
+        }
+
         actionBar.setTitle(mTitle);
     }
 
@@ -209,7 +231,11 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     public void onItemClick(View v, int position) {
         if (twoPane) {
             Bundle args = new Bundle();
-            args.putString(StockDetailActivityFragment.STOCK_DETAIL, mCursorAdapter.getSymbol(position));
+            if (mSymbol != null) {
+                args.putString(StockDetailActivityFragment.STOCK_DETAIL, mSymbol);
+            }else{
+                args.putString(StockDetailActivityFragment.STOCK_DETAIL, mCursorAdapter.getSymbol(position));
+            }
 
             StockDetailActivityFragment fragment = new StockDetailActivityFragment();
             fragment.setArguments(args);

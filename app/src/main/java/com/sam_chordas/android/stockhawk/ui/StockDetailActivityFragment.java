@@ -77,6 +77,8 @@ public class StockDetailActivityFragment extends Fragment implements LoaderManag
     LineChart chart;
     @BindView(android.R.id.tabhost)
     TabHost tabHost;
+    @BindView(android.R.id.tabcontent)
+    View tabContent;
 
     public StockDetailActivityFragment() {
     }
@@ -88,7 +90,6 @@ public class StockDetailActivityFragment extends Fragment implements LoaderManag
         if (arguments != null){
             mSymbol = arguments.getString(STOCK_DETAIL);
         }
-
         if (savedInstanceState != null && savedInstanceState.getString(TAB) != null) {
             mSelectedTab = savedInstanceState.getString(TAB);
             Log.d(LOG_TAG, "onCreate tab 30days");
@@ -110,7 +111,7 @@ public class StockDetailActivityFragment extends Fragment implements LoaderManag
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_stock_detail, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_stock_start, container, false);
         ButterKnife.bind(this, rootView);
         setupTabs();
         return rootView;
@@ -136,15 +137,15 @@ public class StockDetailActivityFragment extends Fragment implements LoaderManag
         tabSpec.setContent(android.R.id.tabcontent);
         tabHost.addTab(tabSpec);
 */
-
-        if (mSelectedTab.equals(getString(R.string.tab1_14d))) {
-            tabHost.setCurrentTab(0);
-            Log.d(LOG_TAG, "setupTabs 14 days ");
-        } else {
+        tabHost.setOnTabChangedListener(this);
+        if (mSelectedTab.equals(getString(R.string.tab2_1m))) {
             tabHost.setCurrentTab(1);
             Log.d(LOG_TAG, "setupTabs 1 month ");
+        } else {
+            tabHost.setCurrentTab(0);
+            Log.d(LOG_TAG, "setupTabs 14 days ");
         }
-        tabHost.setOnTabChangedListener(this);
+
     }
 
     @Override
@@ -261,6 +262,7 @@ public class StockDetailActivityFragment extends Fragment implements LoaderManag
         xAxis.setTextColor(Color.WHITE);
         xAxis.setDrawAxisLine(true);
         xAxis.setDrawGridLines(true);
+        xAxis.setDrawLimitLinesBehindData(true);
         IAxisValueFormatter formatter = new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
@@ -281,10 +283,12 @@ public class StockDetailActivityFragment extends Fragment implements LoaderManag
 
         LineDataSet dataSet = new LineDataSet(entries, "Prices of Stock"); // add entries to dataset
         dataSet.setDrawCircles(false);
+        dataSet.setDrawFilled(true);
+        dataSet.setColor(Color.GRAY);
         if (last >= first){
-            dataSet.setColor(Color.GREEN);
+            dataSet.setFillColor(Color.GREEN);
         }else{
-            dataSet.setColor(Color.RED);
+            dataSet.setFillColor(Color.RED);
         }
 
         dataSet.setValueTextColor(Color.BLACK);
@@ -301,8 +305,10 @@ public class StockDetailActivityFragment extends Fragment implements LoaderManag
         chart.animateX(1);
         chart.setBackgroundColor(Color.TRANSPARENT);
         //chart.setBackgroundColor(Color.GRAY);
-        chart.setDrawGridBackground(false);
+        chart.setDrawGridBackground(true);
         Log.d(LOG_TAG, "chart " + mSelectedTab);
+        chart.setVisibility(View.VISIBLE);
+        tabContent.setVisibility(View.VISIBLE);
     }
 
     @Override

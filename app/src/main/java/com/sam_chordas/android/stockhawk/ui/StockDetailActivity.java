@@ -1,23 +1,32 @@
 package com.sam_chordas.android.stockhawk.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.sam_chordas.android.stockhawk.R;
 
 
-public class StockDetailActivity extends Activity {
+public class StockDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stock_detail);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
         if (savedInstanceState == null){
             Bundle arguments = new Bundle();
-            arguments.putString(StockDetailActivityFragment.STOCK_DETAIL,
-                    getIntent().getExtras().getString(StockDetailActivityFragment.STOCK_DETAIL));
-
+            String symbol = getIntent().getExtras().getString(StockDetailActivityFragment.STOCK_DETAIL);
+            arguments.putString(StockDetailActivityFragment.STOCK_DETAIL, symbol);
+            if (actionBar != null)
+                actionBar.setTitle(symbol);
             StockDetailActivityFragment fragment = new StockDetailActivityFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
@@ -25,5 +34,4 @@ public class StockDetailActivity extends Activity {
                     .commit();
         }
     }
-
 }
