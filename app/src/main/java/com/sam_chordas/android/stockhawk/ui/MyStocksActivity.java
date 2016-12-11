@@ -98,11 +98,11 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
             twoPane = true;
             if (savedInstanceState == null) {
                 StockDetailActivityFragment fragment = new StockDetailActivityFragment();
+                Bundle args = new Bundle();
                 if (mSymbol != null) {
-                    Bundle args = new Bundle();
                     args.putString(StockDetailActivityFragment.STOCK_DETAIL, mSymbol);
-                    fragment.setArguments(args);
                 }
+                fragment.setArguments(args);
                 getFragmentManager().beginTransaction()
                         .replace(R.id.stock_detail_container, fragment, DETAILFRAGMENT_TAG)
                         .commit();
@@ -233,6 +233,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
             Bundle args = new Bundle();
             if (mSymbol != null) {
                 args.putString(StockDetailActivityFragment.STOCK_DETAIL, mSymbol);
+                mSymbol = null;
             }else{
                 args.putString(StockDetailActivityFragment.STOCK_DETAIL, mCursorAdapter.getSymbol(position));
             }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="details_app_bar_overlap">80dp</dimen>
+    <dimen name="detail_card_elevation">@dimen/abc_list_item_padding_horizontal_material</dimen>
+
+    <dimen name="list_item_padding_left">128dp</dimen>
+    <dimen name="list_item_padding_bottom">16dp</dimen>
+    <dimen name="list_item_change_width">100dp</dimen>
+    <dimen name="list_item_padding_middle">32dp</dimen>
+</resources>

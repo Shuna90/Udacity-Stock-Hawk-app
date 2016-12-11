@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_light"
+    tools:context="com.sam_chordas.android.stockhawk.ui.StockDetailActivityFragment"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <include layout="@layout/stock_info_wide"
+            android:elevation="@dimen/card_elevation"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"></include>
+
+        <include layout="@layout/stock_key_statistics_port"
+            android:elevation="@dimen/card_elevation"
+            android:layout_width="match_parent"
+            android:layout_weight="2"
+            android:layout_height="0dp"
+            ></include>
+    </LinearLayout>
+
+
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="0dp"
+        android:layout_weight="4"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tab_height"
+                android:layout_weight="0"
+                android:background="@color/primary_light"
+                />
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/chart"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"/>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+</LinearLayout>

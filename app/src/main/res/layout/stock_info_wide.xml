@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/stock_information"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingLeft="@dimen/keyline_1"
+    android:paddingRight="@dimen/keyline_1"
+    android:paddingTop="@dimen/keyline_1"
+    app:useDefaultMargins="true"
+    app:columnCount="2"
+    app:rowCount="3">
+
+    <TextView
+        android:id="@+id/stock_symbol"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/grey_300"
+        app:layout_gravity="left"
+        app:layout_columnSpan="2"
+        tools:text="FB" />
+
+    <TextView
+        android:id="@+id/stock_bid_price"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/grey_300"
+        app:layout_gravity="left"
+        tools:text="131.31" />
+
+    <TextView
+        android:id="@+id/info_change"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/grey_300"
+        tools:text="+1 ( +1% )"
+        />
+
+
+</android.support.v7.widget.GridLayout>

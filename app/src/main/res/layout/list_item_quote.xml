@@ -6,7 +6,7 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingLeft="@dimen/list_item_padding_left"
-    android:paddingRight="16dp">
+    android:paddingRight="@dimen/list_item_padding_left">
 
     <TextView
         android:id="@+id/stock_symbol"
@@ -28,14 +28,14 @@
             style="@style/BidPriceTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="10sp"
+            android:paddingRight="@dimen/list_item_padding_middle"
             tools:text="1000.00"
             android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/change"
             style="@style/PercentChangeTextStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/list_item_change_width"
             android:layout_height="wrap_content"
             android:background="@drawable/percent_change_pill"
             android:paddingLeft="3dp"

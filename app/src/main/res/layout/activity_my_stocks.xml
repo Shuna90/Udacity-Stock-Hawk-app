@@ -29,7 +29,10 @@
 
 
         </android.support.design.widget.AppBarLayout>
-
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
@@ -50,6 +53,7 @@
             fab:fab_type="normal"
             fab:layout_anchor="recycler_view"
             fab:layout_anchorGravity="bottom | end" />
+        </FrameLayout>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
 

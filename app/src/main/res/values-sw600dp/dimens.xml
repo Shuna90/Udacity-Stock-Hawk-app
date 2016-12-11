@@ -9,6 +9,8 @@
     <dimen name="widget_padding">16dp</dimen>
     <dimen name="widget_padding_bottom">8dp</dimen>
 
-    <dimen name="list_item_padding_left">24dp</dimen>
-    <dimen name="list_item_padding_bottom">24dp</dimen>
+    <dimen name="list_item_padding_left">64dp</dimen>
+    <dimen name="list_item_padding_bottom">16dp</dimen>
+    <dimen name="list_item_change_width">100dp</dimen>
+    <dimen name="list_item_padding_middle">32dp</dimen>
 </resources>
