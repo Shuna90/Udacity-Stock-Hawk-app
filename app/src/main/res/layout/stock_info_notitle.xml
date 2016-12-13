@@ -7,21 +7,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:paddingLeft="@dimen/keyline_1_minus_8dp"
-    android:paddingStart="@dimen/keyline_1_minus_8dp"
-    android:paddingEnd="@dimen/keyline_1_minus_8dp"
-    android:paddingRight="@dimen/keyline_1_minus_8dp"
-    android:paddingTop="@dimen/keyline_1_minus_8dp"
+    android:paddingLeft="@dimen/keyline_1"
+    android:paddingStart="@dimen/keyline_1"
+    android:paddingEnd="@dimen/keyline_1"
+    android:paddingRight="@dimen/keyline_1"
+    android:paddingTop="@dimen/keyline_1"
     app:useDefaultMargins="true"
     app:columnCount="1"
     app:rowCount="3">
-
-    <TextView
-        android:id="@+id/stock_symbol"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/grey_300"
-        app:layout_gravity="left"
-        tools:text="FB" />
 
     <TextView
         android:id="@+id/stock_bid_price"

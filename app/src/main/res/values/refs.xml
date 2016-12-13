@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item type="layout" name="fragment_stock_start">@layout/fragment_stock_detail</item>
+    <item type="layout" name="fragment_stock_start">@layout/fragment_stock_detail_basic</item>
 </resources>
