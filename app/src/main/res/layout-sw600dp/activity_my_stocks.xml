@@ -9,8 +9,8 @@
     android:background="@color/grey_300"
     >
 
-    <RelativeLayout
-        android:id="@+id/appbar"
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/col"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -18,40 +18,38 @@
         android:elevation="@dimen/appbar_elevation"
         android:orientation="vertical">
 
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:elevation="@dimen/appbar_elevation">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
         <!-- This Space is only there to line the image up with the
              keyline correctly, since we cannot do addition of
              dimensions/attributes otherwise -->
-        <android.support.v4.widget.Space
-            android:id="@+id/Align"
-            android:layout_width="90dp"
-            android:layout_height="0dp"
-            android:layout_marginLeft="@dimen/abc_list_item_padding_horizontal_material"
-            android:layout_marginStart="@dimen/abc_list_item_padding_horizontal_material"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/toolbar"/>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="?attr/listPreferredItemHeight"
             android:layout_gravity="center_vertical"
-            android:layout_below="@id/Align"
-            android:layout_marginLeft="@dimen/abc_list_item_padding_horizontal_material"
-            android:layout_marginStart="@dimen/abc_list_item_padding_horizontal_material"
-            android:layout_toRightOf="@id/Align"
+            android:layout_below="@id/toolbar"
+            android:layout_marginLeft="150dp"
+            android:layout_marginStart="150dp"
             android:textColor="@color/white"
-            android:textSize="35dp"
+            android:textSize="35sp"
             android:text="@string/app_name"/>
+        </android.support.design.widget.AppBarLayout>
 
-    </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
 
     <!-- This is used as a strut to create two columns in our RelativeLayout -->
     <android.support.v4.widget.Space
@@ -67,7 +65,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@id/layout_center"
-        android:layout_below="@id/appbar"
+        android:layout_below="@id/col"
         >
 
         <android.support.v7.widget.RecyclerView
@@ -75,6 +73,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
+
+        <TextView
+            android:id="@+id/empty_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:gravity="center_horizontal"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            tools:text="@string/empty_stock"
+            android:textColor="@color/white"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
         <com.melnykov.fab.FloatingActionButton
             android:id="@+id/fab"
@@ -94,6 +107,7 @@
     </FrameLayout>
     <android.support.v7.widget.Space
         android:id="@+id/cardviewAligner"
+        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignLeft="@id/layout_center"
@@ -113,6 +127,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignLeft="@id/cardviewAligner"
+        android:layout_alignStart="@+id/cardviewAligner"
+        android:layout_alignEnd="@+id/cardviewAligner"
         android:layout_alignRight="@id/cardviewAligner"
         android:layout_alignTop="@id/cardviewAligner"
         android:layout_alignBottom="@id/cardviewAligner"

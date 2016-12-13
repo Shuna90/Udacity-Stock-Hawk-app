@@ -21,6 +21,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -63,11 +64,14 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     private boolean twoPane;
     private int mChange = CHANGE_DOLLARS;
     private String mSymbol;
+    private String mFirst;
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     @BindView(R.id.fab)
     FloatingActionButton fab;
+    @BindView(R.id.empty_text)
+    TextView empty_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -217,7 +221,15 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
         if (mCursorAdapter.getItemCount() == 0){
             if (!checkNetwork()){
                 networkToast();
+            }else{
+                recyclerView.setVisibility(View.GONE);
+                empty_text.setVisibility(View.VISIBLE);
+                empty_text.setText(R.string.empty_stock);
             }
+        }else{
+            recyclerView.setVisibility(View.VISIBLE);
+            empty_text.setVisibility(View.GONE);
+            mFirst = mCursorAdapter.getSymbol(0);
         }
     }
 
@@ -234,6 +246,8 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
             if (mSymbol != null) {
                 args.putString(StockDetailActivityFragment.STOCK_DETAIL, mSymbol);
                 mSymbol = null;
+            }else if (position == RecyclerView.NO_POSITION && mFirst != null){
+                args.putString(StockDetailActivityFragment.STOCK_DETAIL, mFirst);
             }else{
                 args.putString(StockDetailActivityFragment.STOCK_DETAIL, mCursorAdapter.getSymbol(position));
             }

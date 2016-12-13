@@ -8,6 +8,8 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:paddingLeft="@dimen/keyline_1"
+    android:paddingEnd="@dimen/keyline_1"
+    android:paddingStart="@dimen/keyline_1"
     android:paddingRight="@dimen/keyline_1"
     android:paddingTop="@dimen/keyline_1_minus_8dp"
     android:paddingBottom="@dimen/keyline_1_minus_8dp"

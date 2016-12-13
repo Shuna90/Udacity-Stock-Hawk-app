@@ -49,6 +49,7 @@ public class StockTaskService extends GcmTaskService {
     private String LOG_TAG = StockTaskService.class.getSimpleName();
     public static final String ACTION_DATA_UPDATED =
             "com.sam_chordas.android.stockhawk.ACTION_DATA_UPDATED";
+    public static final String RESPONSE_CODE = "om.sam_chordas.android.stockhawk.RESPONSE_CODE";
     public static final String PERIOD_TAG = "periodic";
     private static final String INIT_SYMBOL = "\"YHOO\",\"AAPL\",\"GOOG\",\"MSFT\"";
     private static final String URL_QUERY_QUOTES = "select * from yahoo.finance.quotes where symbol in (";

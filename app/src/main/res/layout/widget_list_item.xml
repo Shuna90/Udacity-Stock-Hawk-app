@@ -11,13 +11,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/keyline_1_minus_8dp"
-        android:gravity="left|center_vertical"
+        android:paddingStart="@dimen/keyline_1_minus_8dp"
+        android:paddingEnd="@dimen/keyline_1_minus_8dp"
+        android:paddingRight="@dimen/keyline_1_minus_8dp"
+        android:gravity="start|center_vertical"
         />
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="right"
+        android:gravity="end"
         >
         <TextView
             android:id="@+id/bid_price"
@@ -34,7 +37,9 @@
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/widget_padding_bottom"
             android:paddingLeft="@dimen/widget_padding"
+            android:paddingStart="@dimen/widget_padding"
             android:paddingRight="@dimen/widget_padding"
+            android:paddingEnd="@dimen/widget_padding"
             />
     </LinearLayout>
 </LinearLayout>

@@ -38,6 +38,6 @@
             android:gravity="center"
             android:fontFamily="sans-serif-condensed"
             android:textAppearance="?android:textAppearanceLarge"
-            android:text="@string/empty_stock_list"/>
+            android:text="@string/empty_stock"/>
     </FrameLayout>
 </LinearLayout>
