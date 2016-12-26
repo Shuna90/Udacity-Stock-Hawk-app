@@ -1,5 +1,13 @@
 # Udacity-Stock-Hawk-app
 Stock Hawk is the fourth project in Udacity's Android Developer Nanodegree.
+
+##In this project:
+* Handle error cases in Android.
+* Diagnose existing issues with an app.
+* Make an app accessible to sight-impaired users.
+* Allow app to be localized for distribution in other countries.
+* Add a widget.
+
 ###Screenshots
 ![Alt text](https://cloud.githubusercontent.com/assets/11967184/21485714/f9b30994-cb5b-11e6-9750-9b43e86f7d88.png)
 ![Alt text](https://cloud.githubusercontent.com/assets/11967184/21485716/fc971fa6-cb5b-11e6-8262-4b2ba98f604c.png)
